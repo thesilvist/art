@@ -3,7 +3,7 @@ const CANVAS_RATIO = 1.5;
 const CANVAS_WIDTH = 600;
 const CANVAS_MARGIN = CANVAS_WIDTH / 15;
 
-const BACKGROUND = 220;
+const BACKGROUND = 255;
 
 /*
  * the ratio to original CANVAS_WIDTH to determine scaling

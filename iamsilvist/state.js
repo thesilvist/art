@@ -104,7 +104,7 @@ function drawLine() {
 let nCircles = 0;
 
 function drawCircles() {
-  if (nCircles == 150) {
+  if (nCircles == 160) {
     // reset state before leaving
     nCircles = 0;
     

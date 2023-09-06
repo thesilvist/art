@@ -29,7 +29,7 @@ class Circle {
    */
   draw(c) {
     if (!c) {
-      c = random(200,220)
+      c = random(230,250)
     }
     fill(c);
     
