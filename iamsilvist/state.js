@@ -104,7 +104,7 @@ function drawLine() {
 let nCircles = 0;
 
 function drawCircles() {
-  if (nCircles == 160) {
+  if (nCircles == 150) {
     // reset state before leaving
     nCircles = 0;
     
@@ -177,7 +177,7 @@ function drawAccent() {
 let nFade = 0;
 
 function drawFade() {
-  if (nFade == 100) {
+  if (nFade == 125) {
     // reset state before leaving
     nFade = 0;
     
