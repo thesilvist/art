@@ -6,14 +6,8 @@ const STATE_FADE = 4;
 const STATE_END = 5;
 const STATE_ACCENT = 6;
 
-// Always set waitInfo before moving to STATE_WAIT
+// Always use waitBeforeState() for waiting.
 const STATE_WAIT = 9;
-
-// Dummy data, set this every time.
-let waitInfo = {
-  cycles: 0,
-  nextState: STATE_END,
-}
 
 
 // global next state in state machine
@@ -133,44 +127,27 @@ function drawText() {
     // reset state before leaving
     initText();
     
-    waitInfo = {
-      cycles: 15,
-      nextState: STATE_ACCENT
-    };
-    state = STATE_WAIT;
+    waitBeforeState(15, STATE_ACCENT);
     return;
   }
   
   // Wait cycles between each element for a slower draw
-  waitInfo = {
-    cycles: 2,
-    nextState: STATE_TEXT
-  };
-  
-  state = STATE_WAIT;
+  waitBeforeState(2, STATE_TEXT);
 }
 
 
 function drawAccent() {
+  // drawAccentElement returns false when no more elements
   if (!drawAccentElement()) {
     // reset state before leaving
     initAccents();
     
-    waitInfo = {
-      cycles: 200,
-      nextState: STATE_FADE
-    };
-    state = STATE_WAIT;
+    waitBeforeState(200, STATE_FADE);
     return;
   }
   
   // Wait cycles between each element for a slower draw
-  waitInfo = {
-    cycles: 3,
-    nextState: STATE_ACCENT
-  };
-  
-  state = STATE_WAIT;
+  waitBeforeState(3, STATE_ACCENT);
 }
 
 
@@ -202,6 +179,28 @@ function end() {
 }
 
 
+// Dummy data, set this every time.
+let waitInfo = {
+  cycles: 0,
+  nextState: STATE_END,
+}
+
+/*
+ * wait a certain number of cycles before moving to a state
+ *
+ * cycles: number of state cycles to wait before moving
+ * nextState: state to move to after waiting
+ */
+function waitBeforeState(cycles, nextState) {
+  // Wait cycles before moving to next state.
+  waitInfo = {
+    cycles: cycles,
+    nextState: nextState,
+  };
+
+  state = STATE_WAIT;
+}
+
 /*
  * busy-wait state to slow down drawing where desired
  */
@@ -212,7 +211,7 @@ function wait() {
     waitCycles++;
     return;
   }
-  
+
   waitCycles = 0;
   state = waitInfo.nextState;
 }
