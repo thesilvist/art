@@ -93,7 +93,7 @@ function drawLine() {
     x2 = random(-50 * wr, width + 50 * wr);
     y1 = random(-50 * wr, height + 50 * wr);
     y2 = random(-50 * wr, height + 50 * wr);
-  } while (dist(x1, y1, x2, y1) < 100)
+  } while (dist(x1, y1, x2, y1) < 100 * wr)
 
   strokeWeight(3 * wr);
   stroke(20);
